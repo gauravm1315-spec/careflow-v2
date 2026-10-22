@@ -1,0 +1,18 @@
+# Dependencies
+node_modules/
+
+# Local environment and secrets
+.env
+.env.*
+!.env.example
+
+# Runtime patient/demo data and uploaded files
+data/db.json
+data/uploads/*
+!data/uploads/.gitkeep
+
+# Logs and temporary files
+*.log
+npm-debug.log*
+.DS_Store
+Thumbs.db
