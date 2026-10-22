@@ -1,0 +1,28 @@
+{
+  "version": "1.0",
+  "statement": "Preliminary triage SUGGESTION to help a clinician decide what to look at first. It is not a diagnosis and not a validated clinical risk score. Every number below is a product setting chosen for this prototype — NOT a clinical threshold — and has not been medically validated.",
+  "order": ["urgent", "priority", "clarification", "routine"],
+  "completenessThreshold": 60,
+  "criticalFields": ["symptoms", "onset"],
+  "slm": {
+    "note": "The language model may only ESCALATE. It can never lower or remove a deterministic warning-sign flag.",
+    "requireVerifiedQuoteForUrgent": true,
+    "unverifiedEscalationCap": "priority",
+    "modelOnlyUrgencyCap": "priority"
+  },
+  "fallbackCanBeRoutine": true,
+  "reasons": {
+    "rule_urgent": "A deterministic warning-sign rule matched: {label}. Needs prompt clinician review.",
+    "rule_priority": "A deterministic warning-sign rule matched: {label}.",
+    "model_flag": "The language model described a possible warning sign: {label}. Verify against the original text.",
+    "model_flag_unverified": "The language model described a possible warning sign ({label}) but its quote could not be matched to the original text; treated as Priority until a clinician checks.",
+    "model_priority": "The language model suggested higher attention: {rationale}",
+    "conflict": "Patient statement and report (or two statements) disagree — needs clarification.",
+    "uncertain": "Some information is unclear (transcription, translation or report reading) — needs clarification.",
+    "suspicious": "The patient text contains an instruction aimed at the system. It was ignored, but the case needs a human look.",
+    "incomplete": "Key details are missing (completeness {completeness}%, below the configured {threshold}% threshold).",
+    "critical_missing": "A critical field is missing: {fields}.",
+    "no_ai": "Automatic extraction was limited, so a person should confirm the details.",
+    "routine": "No warning-sign rule matched, key details are present and nothing conflicts. Preliminary only — a clinician decides."
+  }
+}
